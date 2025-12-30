@@ -20,7 +20,7 @@ import {
 import Image from 'next/image';
 
 
-/* ================= FRONTEND SKILLS ================= */
+//FRONTEND SKILLS
 const frontendSkills = [
   { name: 'HTML', icon: SiHtml5, color: 'bg-orange-100 text-orange-600' },
   { name: 'CSS', icon: SiCss3, color: 'bg-blue-100 text-blue-600' },
@@ -31,7 +31,7 @@ const frontendSkills = [
   // { name: 'Angular', icon: SiAngular, color: 'bg-red-100 text-red-600' },
 ];
 
-/* ================= BACKEND SKILLS ================= */
+//BACKEND SKILLS
 const backendSkills = [
   { name: 'Node.js', icon: SiNodedotjs, color: 'bg-green-100 text-green-600' },
   { name: 'Express.js', icon: SiExpress, color: 'bg-gray-100 text-gray-600' },
@@ -45,7 +45,7 @@ const backendSkills = [
   },
 ];
 
-/* ================= DATABASE SKILLS ================= */
+//DATABASE SKILLS
 const databaseSkills = [
   { name: 'MySQL', icon: SiMysql, color: 'bg-blue-100 text-blue-600' },
   { name: 'MongoDB', icon: SiMongodb, color: 'bg-green-100 text-green-600' },
