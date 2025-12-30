@@ -28,11 +28,11 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-gradient-to-br from-[#e6fffa] via-[#c7f9e9] to-[#a7f3d0]">
       <Navigation />
-      <ResumeButton />
       <HomeSection />
       <AboutSection />
       <ExperienceSection />
       <ProjectsSection />
+      <ResumeButton />
       <ContactSection />
     </main>
   );

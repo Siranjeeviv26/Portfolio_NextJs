@@ -1,7 +1,6 @@
 'use client';
 
 import { Mail, Phone, Github, Linkedin } from 'lucide-react';
-import ResumeButton from './ResumeButton';
 
 const contactInfo = [
   {
