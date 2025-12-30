@@ -13,6 +13,7 @@ import {
   SiExpress,
   SiMongodb,
   SiVercel,
+  SiTypescript
 } from 'react-icons/si';
 
 const techIcons: Record<string, JSX.Element> = {
@@ -27,6 +28,7 @@ const techIcons: Record<string, JSX.Element> = {
   MongoDB: <SiMongodb className="w-4 h-4 text-green-700" />,
   Vercel: <SiVercel className="w-4 h-4 text-black" />,
   vercel: <SiVercel className="w-4 h-4 text-black" />,
+  TypeScript: <SiTypescript className="text-blue-600 text-sm" />,
   render: (
     <div className="w-4 h-4 flex items-center justify-center">
       <img 
@@ -60,9 +62,9 @@ const projects = [
   {
     title: 'Wanderlust Travel Blog',
     description:
-      `A modern fitness website designed to promote gym services, membership plans, and workout programs. 
-      Developed using React and Tailwind CSS with a clean, mobile-first UI and deployed on GitHub Pages.`,
-    tech: ['React', 'TailwindCSS', 'GitHub', 'Vercel'],
+      `A Travel platform built with React, TypeScript, and Tailwind CSS. Features multi-page navigation, destination guides, booking interface, and responsive design. 
+      Implements modern React patterns with TypeScript for type safety.`,
+    tech: ['React', 'TailwindCSS', 'GitHub', 'Vercel', 'TypeScript'],
     image: '/assets/Home.png',
     live: 'https://wanderlust-swart.vercel.app/',
   },
