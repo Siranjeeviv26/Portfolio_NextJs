@@ -24,13 +24,6 @@ const workExperience = [
       'Developed and maintained scalable backend APIs, and collaborated on integrations with frontend modules.',
   },
   {
-    title: 'Full Stack Developer',
-    company: 'D-Media',
-    period: 'Jul 2025 – Sep 2025',
-    description:
-      'Designed and implemented scalable backend APIs while enhancing frontend and backend modules to improve performance, maintainability, and user experience.',
-  },
-  {
     title: 'Backend Developer',
     company: 'FlexiDigit Technologies LLP',
     period: 'May 2024 – May 2025',
