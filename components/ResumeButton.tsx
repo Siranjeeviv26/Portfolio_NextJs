@@ -9,7 +9,7 @@ interface ResumeButtonProps {
 export default function ResumeButton({ isMobile = false }: ResumeButtonProps) {
   const handleDownload = () => {
     window.open(
-      'https://drive.google.com/file/d/1Kro9fAyBKCwZCw9c2GJ9tU-mJKinHdIK/view?usp=sharing',
+      'https://drive.google.com/file/d/1W7LuE4DI7LtDbWe7mDo47Ub6yz6hBlq5/view?usp=sharing',
       '_blank'
     );
   };
