@@ -58,6 +58,13 @@ const projects = [
     live: 'https://moments-pink.vercel.app',
   },
   {
+    title: 'PowerZone-Gym management',
+    description: 'PowerZone Gym Management System — A full-stack web application built with React 18, Node.js, Express, and MongoDB. Features a public marketing website, member self-service dashboard, trainer portal, and a comprehensive admin panel. Includes JWT authentication, Cloudinary image uploads, dynamic theming, real-time content editing, and role-based access control.',
+    tech: ['React', 'TailwindCSS', 'vercel', 'NodeJs', 'ExpressJs', 'MongoDB', 'GitHub', 'render'],
+    image: '/assets/powerzone.png',
+    live: 'https://power-zone-one.vercel.app/register',
+  },
+  {
     title: 'QR Code Generator',
     description: 'A lightweight web application that generates QR codes instantly from user input. Built using React and Tailwind CSS with real-time rendering and deployed on Vercel.',
     tech: ['React', 'TailwindCSS', 'vercel'],
