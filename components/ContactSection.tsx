@@ -36,7 +36,7 @@ const contactInfo = [
     icon: Linkedin,
     label: 'LinkedIn',
     value: 'linkedin.com/in/siranjeevi',
-    href: 'https://www.linkedin.com/in/siranjeevi-v-29216a226/',
+    href: 'https://www.linkedin.com/in/siranjeevi-v-737409421/',
     gradient: 'from-blue-500 to-indigo-600',
     lightGlow: 'rgba(59,130,246,0.15)',
     darkGlow: 'rgba(59,130,246,0.3)',
