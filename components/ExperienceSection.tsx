@@ -20,9 +20,9 @@ const education = [
 
 const workExperience = [
   {
-    title: 'Junior Software Engineer',
-    company: 'PROSPEROUSTECH',
-    period: 'Sep 2025 – Dec 2025',
+    title: 'Software Developer',
+    company: 'LITHI INFOTECH',
+    period: 'June 2025 – July 2026',
     description: 'Developed and maintained scalable backend APIs, and collaborated on integrations with frontend modules.',
   },
   {
