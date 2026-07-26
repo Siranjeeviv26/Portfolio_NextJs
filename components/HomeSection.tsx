@@ -33,7 +33,7 @@ export default function HomeSection() {
               bg-violet-100/80 dark:bg-violet-500/10
               border border-violet-300/60 dark:border-violet-500/20
               backdrop-blur-sm animate-fade-in delay-100">
-              <Sparkles className="w-4 h-4 text-violet-600 dark:text-violet-400 animate-float" />
+              <Sparkles className="w-4 h-4 text-yellow-600 dark:text-yellow-400 animate-float" />
               <span className="text-sm font-medium text-violet-700 dark:text-violet-300">
                 Welcome to my portfolio
               </span>
