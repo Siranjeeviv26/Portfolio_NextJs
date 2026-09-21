@@ -1,6 +1,6 @@
 'use client';
 
-import { GraduationCap, Briefcase, Calendar, MapPin } from 'lucide-react';
+import { GraduationCap, Briefcase, Calendar, MapPin, ArrowUpRight } from 'lucide-react';
 import { useInView } from '@/hooks/use-in-view';
 
 const education = [
@@ -52,15 +52,24 @@ export default function ExperienceSection() {
 
   return (
     <section id="experience" className="relative min-h-screen py-24 px-4 sm:px-6 section-glow">
-      <div className="max-w-6xl mx-auto">
+      {/* Background orbs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/3 left-[5%] w-[400px] h-[400px] rounded-full
+          bg-cyan-400/5 dark:bg-cyan-500/8 blur-[120px] animate-orb" />
+        <div className="absolute bottom-1/3 right-[5%] w-[350px] h-[350px] rounded-full
+          bg-violet-400/4 dark:bg-violet-500/6 blur-[100px] animate-orb"
+          style={{ animationDelay: '5s' }} />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto">
 
         {/* Title */}
         <div ref={titleRef}>
           <div className={`text-center mb-16 reveal ${titleVisible ? 'visible' : ''}`}>
-            <span className="text-sm font-semibold tracking-widest uppercase text-cyan-600 dark:text-cyan-400 mb-3 block">
+            <span className="text-xs font-semibold tracking-[0.25em] uppercase text-cyan-600 dark:text-cyan-400 mb-3 block">
               My Journey
             </span>
-            <h2 className="text-5xl font-bold text-slate-900 dark:text-slate-100">
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
               Experience &amp; <span className="animate-gradient">Education</span>
             </h2>
           </div>
@@ -71,40 +80,43 @@ export default function ExperienceSection() {
           {/* Education column */}
           <div ref={eduRef} className="space-y-4">
             <div className={`flex items-center gap-3 mb-8 reveal from-left ${eduVisible ? 'visible' : ''}`}>
-              <div className="p-2.5 rounded-xl bg-violet-100 dark:bg-violet-500/10 border border-violet-200 dark:border-violet-500/20">
-                <GraduationCap className="w-6 h-6 text-violet-600 dark:text-violet-400" />
+              <div className="p-2.5 rounded-xl bg-violet-100 dark:bg-violet-500/10 border border-violet-200/60 dark:border-violet-500/20">
+                <GraduationCap className="w-5 h-5 text-violet-600 dark:text-violet-400" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Education</h3>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white">Education</h3>
             </div>
 
             <div className="space-y-4 max-h-[580px] overflow-y-auto pr-2 custom-scrollbar">
               {education.map((edu, index) => (
                 <div
                   key={index}
-                  className={`glass-card rounded-2xl p-6
-                    border-l-4 border-l-violet-400 dark:border-l-violet-500
-                    hover:shadow-[0_8px_32px_rgba(139,92,246,0.1)] dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.1)]
-                    hover:-translate-y-1
+                  className={`group relative glass-card rounded-2xl overflow-hidden glow-border
                     transition-all duration-300
                     reveal from-left ${eduVisible ? 'visible' : ''}`}
                   style={{ transitionDelay: `${index * 120}ms` }}
                 >
-                  <div className="flex items-center gap-2 mb-3">
-                    <Calendar className="w-4 h-4 text-violet-500 dark:text-violet-400" />
-                    <span className="text-xs font-semibold
-                      text-violet-700 dark:text-violet-400
-                      bg-violet-100 dark:bg-violet-500/10
-                      border border-violet-200 dark:border-violet-500/20
-                      px-3 py-1 rounded-full">
-                      {edu.year}
-                    </span>
+                  {/* Left accent line */}
+                  <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-violet-500 to-violet-400" />
+                  <div className="p-6 pl-7">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Calendar className="w-3.5 h-3.5 text-violet-500 dark:text-violet-400" />
+                      <span className="text-[11px] font-semibold tracking-wide
+                        text-violet-700 dark:text-violet-400
+                        bg-violet-50 dark:bg-violet-500/10
+                        border border-violet-200/60 dark:border-violet-500/20
+                        px-3 py-1 rounded-full uppercase">
+                        {edu.year}
+                      </span>
+                    </div>
+                    <h4 className="text-base font-bold text-slate-900 dark:text-white mb-1">{edu.degree}</h4>
+                    <p className="text-violet-600 dark:text-violet-300 font-semibold text-sm mb-1.5">{edu.institution}</p>
+                    <div className="flex items-center gap-1 text-slate-400 dark:text-slate-500 text-xs">
+                      <MapPin className="w-3 h-3" />
+                      <span>{edu.location}</span>
+                    </div>
                   </div>
-                  <h4 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-1">{edu.degree}</h4>
-                  <p className="text-violet-600 dark:text-violet-300 font-semibold text-sm mb-1">{edu.institution}</p>
-                  <div className="flex items-center gap-1 text-slate-400 dark:text-slate-500 text-xs">
-                    <MapPin className="w-3 h-3" />
-                    <span>{edu.location}</span>
-                  </div>
+                  {/* Hover glow */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 </div>
               ))}
             </div>
@@ -113,37 +125,43 @@ export default function ExperienceSection() {
           {/* Work Experience column */}
           <div ref={workRef} className="space-y-4">
             <div className={`flex items-center gap-3 mb-8 reveal from-right ${workVisible ? 'visible' : ''}`}>
-              <div className="p-2.5 rounded-xl bg-cyan-100 dark:bg-cyan-500/10 border border-cyan-200 dark:border-cyan-500/20">
-                <Briefcase className="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
+              <div className="p-2.5 rounded-xl bg-cyan-100 dark:bg-cyan-500/10 border border-cyan-200/60 dark:border-cyan-500/20">
+                <Briefcase className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Work Experience</h3>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white">Work Experience</h3>
             </div>
 
             <div className="space-y-4 max-h-[580px] overflow-y-auto pr-2 custom-scrollbar">
               {workExperience.map((work, index) => (
                 <div
                   key={index}
-                  className={`glass-card rounded-2xl p-6
-                    border-l-4 border-l-cyan-400 dark:border-l-cyan-500
-                    hover:shadow-[0_8px_32px_rgba(6,182,212,0.1)] dark:hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]
-                    hover:-translate-y-1
+                  className={`group relative glass-card rounded-2xl overflow-hidden glow-border
                     transition-all duration-300
                     reveal from-right ${workVisible ? 'visible' : ''}`}
                   style={{ transitionDelay: `${index * 120}ms` }}
                 >
-                  <div className="flex items-center gap-2 mb-3">
-                    <Calendar className="w-4 h-4 text-cyan-500 dark:text-cyan-400" />
-                    <span className="text-xs font-semibold
-                      text-cyan-700 dark:text-cyan-400
-                      bg-cyan-100 dark:bg-cyan-500/10
-                      border border-cyan-200 dark:border-cyan-500/20
-                      px-3 py-1 rounded-full">
-                      {work.period}
-                    </span>
+                  {/* Left accent line */}
+                  <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-cyan-500 to-cyan-400" />
+                  <div className="p-6 pl-7">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" />
+                        <span className="text-[11px] font-semibold tracking-wide
+                          text-cyan-700 dark:text-cyan-400
+                          bg-cyan-50 dark:bg-cyan-500/10
+                          border border-cyan-200/60 dark:border-cyan-500/20
+                          px-3 py-1 rounded-full uppercase">
+                          {work.period}
+                        </span>
+                      </div>
+                      <ArrowUpRight className="w-4 h-4 text-slate-300 dark:text-slate-600 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors duration-300" />
+                    </div>
+                    <h4 className="text-base font-bold text-slate-900 dark:text-white mb-1">{work.title}</h4>
+                    <p className="text-cyan-600 dark:text-cyan-300 font-semibold text-sm mb-2">{work.company}</p>
+                    <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{work.description}</p>
                   </div>
-                  <h4 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-1">{work.title}</h4>
-                  <p className="text-cyan-600 dark:text-cyan-300 font-semibold text-sm mb-2">{work.company}</p>
-                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{work.description}</p>
+                  {/* Hover glow */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 </div>
               ))}
             </div>
