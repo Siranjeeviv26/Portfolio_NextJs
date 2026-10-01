@@ -1,7 +1,13 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { ChevronLeft, ChevronRight, ExternalLink, Code2 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   SiHtml5,
   SiCss3,
@@ -53,7 +59,15 @@ const techIcons: Record<string, JSX.Element> = {
   Razorpay: <SiRazorpay className="w-3.5 h-3.5 text-blue-700" />,
 };
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  tech: string[];
+  image: string;
+  live: string;
+};
+
+const projects: Project[] = [
   {
     title: "PowerZone Gym Management",
     description:
@@ -179,13 +193,12 @@ const projects = [
   },
 ];
 
-const CARD_HEIGHT = 440;
-
 export default function ProjectsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [direction, setDirection] = useState<"left" | "right">("right");
   const [animating, setAnimating] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const { ref: sectionRef, inView: sectionVisible } = useInView();
 
@@ -261,6 +274,64 @@ export default function ProjectsSection() {
     </span>
   );
 
+  const ProjectCard = ({ project }: { project: Project }) => (
+    <div className="group h-full">
+      <div
+        className="relative flex h-full flex-col overflow-hidden
+          glass-card rounded-3xl
+          transition-all duration-400
+          group-hover:-translate-y-1.5
+          group-hover:shadow-glass-hover dark:group-hover:shadow-glass-dark-hover
+          glow-border"
+      >
+        <div className="relative w-full h-52 flex-shrink-0 overflow-hidden">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+        </div>
+
+        <div className="flex flex-1 flex-col items-center text-center px-5 pt-4 pb-5">
+          <h3
+            className="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white
+              transition-colors duration-300 group-hover:text-violet-700 dark:group-hover:text-violet-300"
+          >
+            {project.title}
+          </h3>
+
+          <div className="mt-auto w-full flex items-center gap-3 pt-4">
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center gap-2
+                rounded-full text-white text-sm font-bold py-3
+                bg-gradient-to-br from-violet-500 to-violet-600
+                shadow-lg shadow-violet-500/30
+                hover:shadow-violet-500/50 hover:-translate-y-0.5
+                active:scale-95 transition-all duration-300"
+            >
+              <ExternalLink className="w-4 h-4" /> Live Demo
+            </a>
+            <button
+              type="button"
+              onClick={() => setSelectedProject(project)}
+              className="flex-1 inline-flex items-center justify-center gap-2
+                rounded-full text-sm font-bold py-3
+                bg-slate-200 text-slate-700 dark:bg-white/10 dark:text-slate-200
+                hover:bg-slate-300 dark:hover:bg-white/20 hover:-translate-y-0.5
+                active:scale-95 transition-all duration-300"
+            >
+              <Code2 className="w-4 h-4" /> Tech Used
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <section
       id="projects"
@@ -303,132 +374,20 @@ export default function ProjectsSection() {
               onTouchEnd={handleTouchEnd}
               style={slideStyle}
             >
-              <a
-                href={projects[currentIndex].live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block glass-card rounded-2xl overflow-hidden
-                  transition-all duration-300 mx-auto max-w-md glow-border"
-                style={{ minHeight: 420 }}
-              >
-                <div className="relative h-52 overflow-hidden">
-                  <img
-                    src={projects[currentIndex].image}
-                    alt={projects[currentIndex].title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  <span
-                    className="absolute top-3 left-3 text-[10px] font-bold tracking-widest uppercase
-                    bg-white/90 dark:bg-slate-900/80 backdrop-blur-md
-                    text-violet-700 dark:text-violet-300 border border-violet-200/50 dark:border-violet-500/20
-                    px-2.5 py-1 rounded-full"
-                  >
-                    Live
-                  </span>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    <span
-                      className="flex items-center gap-2 text-white text-sm font-semibold
-                      bg-violet-600/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-lg"
-                    >
-                      <ExternalLink className="w-4 h-4" /> View Project
-                    </span>
-                  </div>
-                </div>
-                <div className="p-6 flex flex-col" style={{ minHeight: 420 }}>
-                  <div className="relative h-44 overflow-hidden rounded-xl mb-4">
-                    <img
-                      src={projects[currentIndex].image}
-                      alt={projects[currentIndex].title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                    <span
-                      className="absolute top-2.5 left-2.5 text-[10px] font-bold tracking-widest uppercase
-                      bg-white/90 dark:bg-slate-900/80 backdrop-blur-md
-                      text-violet-700 dark:text-violet-300 border border-violet-200/50 dark:border-violet-500/20
-                      px-2.5 py-1 rounded-full"
-                    >
-                      Live
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                    {projects[currentIndex].title}
-                  </h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed line-clamp-3 flex-1">
-                    {projects[currentIndex].description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-slate-100 dark:border-white/[0.06]">
-                    {projects[currentIndex].tech.map((tech) => (
-                      <TechBadge key={tech} tech={tech} />
-                    ))}
-                  </div>
-                </div>
-              </a>
+              <div className="mx-auto max-w-md">
+                <ProjectCard
+                  key={`mobile-${currentIndex}`}
+                  project={projects[currentIndex]}
+                />
+              </div>
             </div>
           ) : (
-            <div
-              className="grid md:grid-cols-3 gap-6 mb-6"
-              style={{
-                ...slideStyle,
-                minHeight: CARD_HEIGHT,
-              }}
-            >
+            <div className="grid md:grid-cols-3 gap-6 mb-6" style={slideStyle}>
               {getVisibleProjects().map((project, index) => (
-                <div
+                <ProjectCard
                   key={`${currentIndex}-${index}`}
-                  className="group relative"
-                >
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative block glass-card rounded-2xl overflow-hidden flex flex-col h-full
-                      transition-all duration-400 group-hover:-translate-y-1.5 group-hover:shadow-glass-hover dark:group-hover:shadow-glass-dark-hover glow-border"
-                    style={{ height: CARD_HEIGHT }}
-                  >
-                    <div className="relative h-48 flex-shrink-0 overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                      <span
-                        className="absolute top-3 left-3 text-[10px] font-bold tracking-widest uppercase
-                        bg-white/90 dark:bg-slate-900/80 backdrop-blur-md
-                        text-violet-700 dark:text-violet-300 border border-violet-200/50 dark:border-violet-500/20
-                        px-2.5 py-1 rounded-full"
-                      >
-                        Live
-                      </span>
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <span
-                          className="flex items-center gap-2 text-white text-sm font-semibold
-                          bg-violet-600/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-lg"
-                        >
-                          <ExternalLink className="w-4 h-4" /> View Project
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-5 flex flex-col flex-1">
-                      <h3
-                        className="text-base font-bold text-slate-900 dark:text-white mb-2
-                        transition-colors duration-300 group-hover:text-violet-700 dark:group-hover:text-violet-300"
-                      >
-                        {project.title}
-                      </h3>
-                      <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed line-clamp-2 flex-1">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5 mt-4 pt-3 border-t border-slate-100 dark:border-white/[0.06]">
-                        {project.tech.map((tech) => (
-                          <TechBadge key={tech} tech={tech} />
-                        ))}
-                      </div>
-                    </div>
-                  </a>
-                </div>
+                  project={project}
+                />
               ))}
             </div>
           )}
@@ -492,6 +451,45 @@ export default function ProjectsSection() {
           )}
         </div>
       </div>
+
+      {/* Tech Used popup */}
+      <Dialog
+        open={selectedProject !== null}
+        onOpenChange={(open) => {
+          if (!open) setSelectedProject(null);
+        }}
+      >
+        <DialogContent
+          className="w-[calc(100%-1.5rem)] max-w-md gap-0 p-0
+            max-h-[85dvh] overflow-y-auto overscroll-contain
+            rounded-[24px] sm:rounded-[28px]
+            border-slate-200/80 dark:border-white/10
+            bg-white dark:bg-slate-900 shadow-2xl"
+        >
+          {selectedProject && (
+            <div className="flex flex-col items-center px-5 sm:px-7 pt-9 pb-7 text-center">
+              <DialogTitle className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                {selectedProject.title}
+              </DialogTitle>
+
+              <DialogDescription className="mt-3 text-[13px] sm:text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                {selectedProject.description}
+              </DialogDescription>
+
+              <div className="mt-6 w-full pt-5 border-t border-slate-100 dark:border-white/[0.06]">
+                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400 mb-3">
+                  Tech Used
+                </p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {selectedProject.tech.map((tech) => (
+                    <TechBadge key={tech} tech={tech} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

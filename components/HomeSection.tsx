@@ -37,10 +37,10 @@ export default function HomeSection() {
       >
         {/* Gradient mesh background */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div
+          {/* <div
             className="absolute top-20 left-[15%] w-[500px] h-[500px] rounded-full
             bg-violet-500/8 dark:bg-violet-500/12 blur-[120px] animate-orb"
-          />
+          /> */}
           <div
             className="absolute bottom-32 right-[10%] w-[450px] h-[450px] rounded-full
             bg-cyan-400/6 dark:bg-cyan-500/10 blur-[110px] animate-orb"
@@ -51,8 +51,6 @@ export default function HomeSection() {
             bg-fuchsia-400/4 dark:bg-fuchsia-500/8 blur-[100px] animate-orb"
             style={{ animationDelay: "3s" }}
           />
-          {/* Radial gradient overlay */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#f5f4ff_70%)] dark:bg-[radial-gradient(ellipse_at_center,transparent_0%,#050510_70%)]" />
         </div>
 
         {/* Main content */}
@@ -111,7 +109,8 @@ export default function HomeSection() {
                 text-amber-700 dark:text-amber-300
                 backdrop-blur-sm"
               >
-                <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500" />| AI-Assisted Developer
+                <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500" />|
+                AI-Assisted Developer
               </span>
             </div>
 
