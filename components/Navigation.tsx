@@ -72,7 +72,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <span className="text-lg font-bold bg-gradient-to-r from-violet-600 to-cyan-500 dark:from-violet-400 dark:to-cyan-400 bg-clip-text text-transparent tracking-tight mr-6 md:mr-8 shrink-0">
-            <span className="md:hidden">S.</span>
+            <span className="md:hidden">Siranjeevi.dev</span>
             <span className="hidden md:inline">Siranjeevi</span>
           </span>
 
