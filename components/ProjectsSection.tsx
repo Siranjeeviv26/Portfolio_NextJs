@@ -139,7 +139,7 @@ const projects: Project[] = [
       "vercel",
     ],
     image: "/assets/StockPilot.png",
-    live: "https://stock-pilot-nu-olive.vercel.app/login",
+    live: "https://stock-pilot-nu-olive.vercel.app/",
   },
   {
     title: "Wanderlust Travel Blog",
