@@ -115,7 +115,7 @@ const projects: Project[] = [
       "vercel",
     ],
     image: "/assets/ClientHub.png",
-    live: "https://clienthub.vercel.app",
+    live: "https://client-hub-sable-kappa.vercel.app/",
   },
   {
     title: "StockPilot",
